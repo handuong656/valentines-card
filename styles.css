@@ -20,8 +20,8 @@ body {
 
 h1 {
     color: lightpink;
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    text-align: center;
     font-size: 60px;
 }
 
