@@ -3,33 +3,25 @@ const imageOne = document.querySelector(".image-1");
 const imageTwo = document.querySelector(".image-2");
 const btnYes = document.querySelector(".btn-yes");
 const btnNo = document.querySelector(".btn-no");
+btnNo.addEventListener("mouseover", moveButton);
+btnNo.addEventListener("touchstart", moveButton); // Handles mobile devices
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-btnNo.addEventListener("mouseover", (e) => {
+function moveButton() {
     const containerHeight = container.getBoundingClientRect().height;
     const containerWidth = container.getBoundingClientRect().width;
     const btnHeight = btnNo.getBoundingClientRect().height;
     const btnWidth = btnNo.getBoundingClientRect().width;
-    const btnTop = container.getBoundingClientRect().top;
-    const btnLeft = container.getBoundingClientRect().left;
 
-    let newTop = btnTop;
-    let newLeft = btnLeft;
+    let newTop = getRandomNumber(0, containerHeight - btnHeight);
+    let newLeft = getRandomNumber(0, containerWidth - btnWidth);
 
-    while(Math.abs(newTop - btnTop) < containerHeight / 3) {
-        newTop = getRandomNumber(0, containerHeight - btnHeight);
-    }
-
-    while(Math.abs(newLeft - btnLeft) < containerWidth / 3) {
-        newLeft = getRandomNumber(0, containerWidth - btnWidth);
-    }
-
-    btnNo.style.top = Math.floor(newTop) + "px";
-    btnNo.style.left = Math.floor(newLeft) + "px";
-});
+    btnNo.style.top = `${newTop}px`;
+    btnNo.style.left = `${newLeft}px`;
+}
 
 btnYes.addEventListener("click", (e) => {
     btnNo.classList.add("hide");
